@@ -1,6 +1,5 @@
 package net.shangtech.base;
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
 import org.hibernate.SessionFactory;
@@ -12,9 +11,8 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
  * @author songxh
  *
  * @param <T>
- * @param <PK>
  */
-public class BaseDaoImpl<T, PK extends Serializable> extends HibernateDaoSupport implements IBaseDao<T, PK> {
+public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
 	public void insert(T entity) {
 		getHibernateTemplate().save(entity);
@@ -25,11 +23,11 @@ public class BaseDaoImpl<T, PK extends Serializable> extends HibernateDaoSupport
 	}
 
 	@SuppressWarnings("unchecked")
-	public T find(PK id) {
+	public T find(Long id) {
 		return (T) getHibernateTemplate().get(getEntityClass(), id);
 	}
 
-	public void delete(PK id) {
+	public void delete(Long id) {
 		getHibernateTemplate().delete(find(id));
 	}
 	

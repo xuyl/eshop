@@ -1,12 +1,6 @@
 package net.shangtech.base;
 
-
-/**
- * 
- * @author songxh
- *
- */
-public interface IBaseDao<T> {
+public interface IBaseService<T> {
 	
 	void insert(T entity);
 	
